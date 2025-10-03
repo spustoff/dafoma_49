@@ -131,14 +131,6 @@ struct HomeView: View {
                             color: Color(hex: "#4CAF50") ?? .green,
                             action: { showRandomPuzzle = true }
                         )
-                        
-                        QuickActionButton(
-                            title: "Daily Challenge",
-                            subtitle: "Special challenge of the day",
-                            icon: "calendar",
-                            color: Color(hex: "#FF9800") ?? .orange,
-                            action: { /* TODO: Implement daily challenge */ }
-                        )
                     }
                     .padding(.horizontal, 20)
                 }
@@ -467,23 +459,6 @@ struct SettingsView: View {
                         action: {
                             showingResetAlert = true
                         }
-                    )
-                }
-                
-                // About
-                SettingsSection(title: "About") {
-                    SettingsRow(
-                        title: "QuizTrek Vada",
-                        subtitle: "Version 1.0",
-                        icon: "info.circle",
-                        action: {}
-                    )
-                    
-                    SettingsRow(
-                        title: "Privacy Policy",
-                        subtitle: "We don't collect personal data",
-                        icon: "hand.raised.circle",
-                        action: {}
                     )
                 }
                 

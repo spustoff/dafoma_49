@@ -97,54 +97,56 @@ struct QuizMenuView: View {
             Spacer()
             
             // Quick Start Options
-            VStack(spacing: 20) {
-                QuizMenuButton(
-                    title: "Quick Quiz",
-                    subtitle: "10 random questions",
-                    icon: "bolt.fill",
-                    color: Color(hex: "#FE284A") ?? .red
-                ) {
-                    viewModel.startQuiz(questionCount: 10)
-                }
+            ScrollView(.vertical, showsIndicators: false) {
                 
-                QuizMenuButton(
-                    title: "Custom Quiz",
-                    subtitle: "Choose category & difficulty",
-                    icon: "slider.horizontal.3",
-                    color: Color(hex: "#2196F3") ?? .blue
-                ) {
-                    showQuizSetup = true
-                }
-                
-                QuizMenuButton(
-                    title: "Adaptive Quiz",
-                    subtitle: "Questions match your level",
-                    icon: "brain",
-                    color: Color(hex: "#4CAF50") ?? .green
-                ) {
-                    // Get player level from statistics
-                    let playerStats = DataService.shared.getPlayerStatistics(for: "Player")
-                    viewModel.startAdaptiveQuiz(playerLevel: playerStats.level.level)
-                }
-            }
-            .padding(.horizontal, 30)
-            
-            Spacer()
-            
-            // Categories Preview
-            VStack(spacing: 15) {
-                Text("Categories")
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.white)
-                
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 4), spacing: 15) {
-                    ForEach(QuizCategory.allCases.prefix(8), id: \.self) { category in
-                        CategoryIcon(category: category)
+                VStack(spacing: 20) {
+                    QuizMenuButton(
+                        title: "Quick Quiz",
+                        subtitle: "10 random questions",
+                        icon: "bolt.fill",
+                        color: Color(hex: "#FE284A") ?? .red
+                    ) {
+                        viewModel.startQuiz(questionCount: 10)
+                    }
+                    
+                    QuizMenuButton(
+                        title: "Custom Quiz",
+                        subtitle: "Choose category & difficulty",
+                        icon: "slider.horizontal.3",
+                        color: Color(hex: "#2196F3") ?? .blue
+                    ) {
+                        showQuizSetup = true
+                    }
+                    
+                    QuizMenuButton(
+                        title: "Adaptive Quiz",
+                        subtitle: "Questions match your level",
+                        icon: "brain",
+                        color: Color(hex: "#4CAF50") ?? .green
+                    ) {
+                        // Get player level from statistics
+                        let playerStats = DataService.shared.getPlayerStatistics(for: "Player")
+                        viewModel.startAdaptiveQuiz(playerLevel: playerStats.level.level)
                     }
                 }
+                .padding(.horizontal, 30)
+                
+                // Categories Preview
+                VStack(spacing: 15) {
+                    Text("Categories")
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(.white)
+                    
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 4), spacing: 15) {
+                        ForEach(QuizCategory.allCases.prefix(8), id: \.self) { category in
+                            CategoryIcon(category: category)
+                        }
+                    }
+                }
+                .padding(.horizontal, 30)
+                .padding(.bottom, 30)
+                .padding(.top)
             }
-            .padding(.horizontal, 30)
-            .padding(.bottom, 30)
         }
     }
 }
