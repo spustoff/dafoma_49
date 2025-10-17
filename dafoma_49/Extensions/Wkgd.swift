@@ -1,12 +1,13 @@
 //
-//  Wms.swift
-//  dafoma_49
+//  Wkgd.swift
+//  dafoma_57
 //
 //  Created by Вячеслав on 10/6/25.
 //
 
 
 import SwiftUI
+import Combine
 import WebKit
 
 struct WebSystem: View {
